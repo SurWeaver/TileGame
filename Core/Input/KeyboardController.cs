@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Input;
 
-namespace MGTools.Input;
+namespace Core.Input;
 
 public static class KeyboardController
 {

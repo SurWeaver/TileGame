@@ -29,6 +29,5 @@
   <ItemGroup>
     <ProjectReference Include="..\DataModels\DataModels.csproj" />
     <ProjectReference Include="..\EcsLib\EcsLib.csproj" />
-    <ProjectReference Include="..\MGTools\MGTools.csproj" />
   </ItemGroup>
 </Project>

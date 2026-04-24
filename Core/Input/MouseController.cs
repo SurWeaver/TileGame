@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace MGTools.Input;
+namespace Core.Input;
 
 public static class MouseController
 {
@@ -58,13 +58,4 @@ public static class MouseController
     public static Point DeltaPosition => _current.Position - _previous.Position;
     public static int Scroll => _current.ScrollWheelValue;
     public static int DeltaScroll => _current.ScrollWheelValue - _previous.ScrollWheelValue;
-}
-
-public enum MouseButton
-{
-    Left,
-    Right,
-    Middle,
-    X1,
-    X2,
 }
