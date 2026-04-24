@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent>
+  <Asset Type="DataModels.Input.InputMapping">
+    <Actions>
+      <Item>
+        <Action>GoLeft</Action>
+        <KeyboardKeys>
+          <Item>A</Item>
+          <Item>Left</Item>
+        </KeyboardKeys>
+        <GamepadButtons>
+          <Item>DPadLeft</Item>
+          <Item>LeftThumbstickLeft</Item>
+        </GamepadButtons>
+        <MouseButtons/>
+      </Item>
+      <Item>
+        <Action>GoRight</Action>
+        <KeyboardKeys>
+          <Item>D</Item>
+          <Item>Right</Item>
+        </KeyboardKeys>
+        <GamepadButtons>
+          <Item>DPadRight</Item>
+          <Item>LeftThumbstickRight</Item>
+        </GamepadButtons>
+        <MouseButtons/>
+      </Item>
+      <Item>
+        <Action>GoUp</Action>
+        <KeyboardKeys>
+          <Item>W</Item>
+          <Item>Up</Item>
+        </KeyboardKeys>
+        <GamepadButtons>
+          <Item>DPadUp</Item>
+          <Item>LeftThumbstickUp</Item>
+        </GamepadButtons>
+        <MouseButtons/>
+      </Item>
+      <Item>
+        <Action>GoDown</Action>
+        <KeyboardKeys>
+          <Item>S</Item>
+          <Item>Down</Item>
+        </KeyboardKeys>
+        <GamepadButtons>
+          <Item>DPadDown</Item>
+          <Item>LeftThumbstickDown</Item>
+        </GamepadButtons>
+        <MouseButtons/>
+      </Item>
+    </Actions>
+  </Asset>
+</XnaContent>

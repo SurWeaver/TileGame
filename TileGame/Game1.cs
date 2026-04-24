@@ -1,10 +1,15 @@
-﻿using DataModels;
+﻿#nullable disable
+using Core.Input;
+using DataModels;
+using DataModels.Input;
 using EcsLib.Drawing.Systems;
+using EcsLib.Input.Components;
+using EcsLib.Tools;
 using Leopotam.EcsLite;
-using MGTools.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using TileGame.GameSystems;
+using TileGame.Initialization;
 
 namespace TileGame;
 
@@ -28,6 +33,7 @@ public class Game1 : Game
     protected override void Initialize()
     {
         _world = new EcsWorld();
+        EntityBuilder.Initialize(_world);
 
         base.Initialize();
     }
@@ -36,6 +42,8 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        LoadInputToWorld();
+
         InitializeSystems();
     }
 
@@ -43,6 +51,9 @@ public class Game1 : Game
     {
         _updateSystems = new EcsSystems(_world);
         _updateSystems
+            .AddActionProcessing()
+
+            .AddCleaningOneFrameComponentsAndEntities()
             .Init();
 
         _drawSystems = new EcsSystems(_world);
@@ -50,6 +61,29 @@ public class Game1 : Game
             .Add(new BeginDrawSystem(_spriteBatch, samplerState: SamplerState.PointClamp))
             .Add(new EndDrawSystem(_spriteBatch))
             .Init();
+    }
+
+    private void LoadInputToWorld()
+    {
+        var input = Content.Load<InputMapping>("PlayerInput");
+
+        foreach (var action in input.Actions)
+        {
+            foreach (var key in action.KeyboardKeys)
+                EntityBuilder.NewEntity()
+                    .With(new PlayerAction(action.Action))
+                    .With(new ActionKey(key));
+
+            foreach (var button in action.MouseButtons)
+                EntityBuilder.NewEntity()
+                    .With(new PlayerAction(action.Action))
+                    .With(new ActionMouseButton(button));
+
+            foreach (var button in action.GamepadButtons)
+                EntityBuilder.NewEntity()
+                    .With(new PlayerAction(action.Action))
+                    .With(new ActionGamepadButton(button));
+        }
     }
 
     protected override void Update(GameTime gameTime)

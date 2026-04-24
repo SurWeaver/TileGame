@@ -12,3 +12,9 @@
 
 /reference:..\..\DataModels\bin\Debug\net8.0\DataModels.dll
 
+#---------------------------------- Content ---------------------------------#
+
+#begin PlayerInput.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:PlayerInput.xml
