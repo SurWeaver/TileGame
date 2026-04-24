@@ -1,7 +1,7 @@
+using EcsLib.Cleanup.Systems;
 using EcsLib.Common;
 using EcsLib.Input.Components;
 using EcsLib.Input.Systems;
-using EcsLib.Systems;
 using Leopotam.EcsLite;
 
 namespace TileGame.Initialization;

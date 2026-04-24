@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
 
-namespace EcsLib.Systems;
+namespace EcsLib.Cleanup.Systems;
 
 public class DeleteComponentSystem<TComponent>
     : IEcsInitSystem, IEcsRunSystem where TComponent : struct
