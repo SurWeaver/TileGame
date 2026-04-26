@@ -10,7 +10,7 @@ public class ProcessKeyboardActionSystem
 {
     private EcsFilter _filter;
     private EcsPool<PlayerAction> _actionPool;
-    private EcsPool<ActionKey> _keyPool;
+    private EcsPool<ActionKeyboardKey> _keyPool;
     private EcsPool<Happened> _happenedPool;
 
     public void Init(IEcsSystems systems)
@@ -18,11 +18,11 @@ public class ProcessKeyboardActionSystem
         var world = systems.GetWorld();
 
         _filter = world.Filter<PlayerAction>()
-            .Inc<ActionKey>()
+            .Inc<ActionKeyboardKey>()
             .End();
 
         _actionPool = world.GetPool<PlayerAction>();
-        _keyPool = world.GetPool<ActionKey>();
+        _keyPool = world.GetPool<ActionKeyboardKey>();
         _happenedPool = world.GetPool<Happened>();
     }
 

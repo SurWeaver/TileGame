@@ -78,7 +78,7 @@ public class Game1 : Game
             foreach (var key in action.KeyboardKeys)
                 EntityBuilder.NewEntity()
                     .With(new PlayerAction(action.Action))
-                    .With(new ActionKey(key));
+                    .With(new ActionKeyboardKey(key));
 
             foreach (var button in action.MouseButtons)
                 EntityBuilder.NewEntity()
