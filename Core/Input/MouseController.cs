@@ -16,7 +16,7 @@ public static class MouseController
 
     public static bool IsJustPressed(MouseButton button) => button switch
     {
-        MouseButton.Left => _previous.LeftButton is ButtonState.Released && _current.RightButton is ButtonState.Pressed,
+        MouseButton.Left => _previous.LeftButton is ButtonState.Released && _current.LeftButton is ButtonState.Pressed,
         MouseButton.Right => _previous.RightButton is ButtonState.Released && _current.RightButton is ButtonState.Pressed,
         MouseButton.Middle => _previous.MiddleButton is ButtonState.Released && _current.MiddleButton is ButtonState.Pressed,
         MouseButton.X1 => _previous.XButton1 is ButtonState.Released && _current.XButton1 is ButtonState.Pressed,
@@ -26,7 +26,7 @@ public static class MouseController
 
     public static bool IsJustReleased(MouseButton button) => button switch
     {
-        MouseButton.Left => _previous.LeftButton is ButtonState.Pressed && _current.RightButton is ButtonState.Released,
+        MouseButton.Left => _previous.LeftButton is ButtonState.Pressed && _current.LeftButton is ButtonState.Released,
         MouseButton.Right => _previous.RightButton is ButtonState.Pressed && _current.RightButton is ButtonState.Released,
         MouseButton.Middle => _previous.MiddleButton is ButtonState.Pressed && _current.MiddleButton is ButtonState.Released,
         MouseButton.X1 => _previous.XButton1 is ButtonState.Pressed && _current.XButton1 is ButtonState.Released,
@@ -36,7 +36,7 @@ public static class MouseController
 
     public static bool IsPressed(MouseButton button) => button switch
     {
-        MouseButton.Left => _current.RightButton is ButtonState.Pressed,
+        MouseButton.Left => _current.LeftButton is ButtonState.Pressed,
         MouseButton.Right => _current.RightButton is ButtonState.Pressed,
         MouseButton.Middle => _current.MiddleButton is ButtonState.Pressed,
         MouseButton.X1 => _current.XButton1 is ButtonState.Pressed,
@@ -46,7 +46,7 @@ public static class MouseController
 
     public static bool IsReleased(MouseButton button) => button switch
     {
-        MouseButton.Left => _current.RightButton is ButtonState.Released,
+        MouseButton.Left => _current.LeftButton is ButtonState.Released,
         MouseButton.Right => _current.RightButton is ButtonState.Released,
         MouseButton.Middle => _current.MiddleButton is ButtonState.Released,
         MouseButton.X1 => _current.XButton1 is ButtonState.Released,
