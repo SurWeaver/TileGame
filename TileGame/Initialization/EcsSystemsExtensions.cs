@@ -22,7 +22,10 @@ public static class EcsSystemsExtensions
             // Вычисляет SpriteOrigin
             .Add(new CalculateSpriteOriginSystem())
             // Вычисляет всё остальное
-            .Add(new FillSpriteSystem());
+            .Add(new FillSpriteSystem())
+
+            .Add(new CalculateParentPositionSystem())
+            .Add(new CalculateParentRotationSystem());
 
         return systems;
     }
@@ -42,7 +45,8 @@ public static class EcsSystemsExtensions
     {
         systems
             .Add(new DeleteEntityWithComponentSystem<DeleteAfterFrameEnd>())
-            .Add(new DeleteComponentSystem<Happened>());
+            .Add(new DeleteComponentSystem<Happened>())
+            .Add(new CleanAfterEmptyParentSystem());
 
         return systems;
     }
