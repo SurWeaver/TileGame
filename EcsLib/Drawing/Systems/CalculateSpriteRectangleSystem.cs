@@ -1,10 +1,9 @@
 using EcsLib.Drawing.Components;
-using EcsLib.Drawing.Tiles;
 using EcsLib.Extensions;
 using Leopotam.EcsLite;
 using Microsoft.Xna.Framework;
 
-namespace EcsLib.Drawing.Tile.Systems;
+namespace EcsLib.Drawing.Systems;
 
 public class CalculateSpriteRectangleSystem
     : IEcsInitSystem, IEcsRunSystem

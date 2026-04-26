@@ -16,7 +16,7 @@ public class FillSpriteSystem
     private EcsFilter _filter;
     private EcsPool<SpriteRectangle> _rectanglePool;
     private EcsPool<SpriteColor> _colorPool;
-    private EcsPool<SpriteRotation> _rotationPool;
+    private EcsPool<Rotation> _rotationPool;
     private EcsPool<SpriteOrigin> _originPool;
     private EcsPool<SpriteScale> _scalePool;
     private EcsPool<SpriteFlip> _flipPool;
@@ -33,7 +33,7 @@ public class FillSpriteSystem
 
         _rectanglePool = world.GetPool<SpriteRectangle>();
         _colorPool = world.GetPool<SpriteColor>();
-        _rotationPool = world.GetPool<SpriteRotation>();
+        _rotationPool = world.GetPool<Rotation>();
         _originPool = world.GetPool<SpriteOrigin>();
         _scalePool = world.GetPool<SpriteScale>();
         _flipPool = world.GetPool<SpriteFlip>();

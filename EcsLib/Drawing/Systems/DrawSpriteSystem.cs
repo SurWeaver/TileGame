@@ -1,6 +1,5 @@
 using EcsLib.Common.Components;
 using EcsLib.Drawing.Components;
-using EcsLib.Extensions;
 using Leopotam.EcsLite;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,7 +13,7 @@ public class DrawSpriteSystem(SpriteBatch spriteBatch)
     private EcsPool<Position> _positionPool;
     private EcsPool<SpriteRectangle> _rectanglePool;
     private EcsPool<SpriteColor> _colorPool;
-    private EcsPool<SpriteRotation> _rotationPool;
+    private EcsPool<Rotation> _rotationPool;
     private EcsPool<SpriteOrigin> _originPool;
     private EcsPool<SpriteScale> _scalePool;
     private EcsPool<SpriteFlip> _flipPool;
@@ -28,7 +27,7 @@ public class DrawSpriteSystem(SpriteBatch spriteBatch)
             .Inc<Position>()
             .Inc<SpriteRectangle>()
             .Inc<SpriteColor>()
-            .Inc<SpriteRotation>()
+            .Inc<Rotation>()
             .Inc<SpriteOrigin>()
             .Inc<SpriteScale>()
             .Inc<SpriteFlip>()
@@ -39,7 +38,7 @@ public class DrawSpriteSystem(SpriteBatch spriteBatch)
         _positionPool = world.GetPool<Position>();
         _rectanglePool = world.GetPool<SpriteRectangle>();
         _colorPool = world.GetPool<SpriteColor>();
-        _rotationPool = world.GetPool<SpriteRotation>();
+        _rotationPool = world.GetPool<Rotation>();
         _originPool = world.GetPool<SpriteOrigin>();
         _scalePool = world.GetPool<SpriteScale>();
         _flipPool = world.GetPool<SpriteFlip>();

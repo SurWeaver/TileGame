@@ -58,7 +58,7 @@ public class Game1 : Game
 
             .AddActionProcessing()
 
-            .AddCleaningOneFrameComponentsAndEntities()
+            .AddCleanup()
             .Init();
 
         _drawSystems = new EcsSystems(_world);

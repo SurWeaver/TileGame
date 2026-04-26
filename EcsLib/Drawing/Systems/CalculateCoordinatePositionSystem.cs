@@ -3,16 +3,16 @@ using EcsLib.Extensions;
 using Leopotam.EcsLite;
 using Microsoft.Xna.Framework;
 
-namespace EcsLib.Drawing.Tile.Systems;
+namespace EcsLib.Drawing.Systems;
 
-public class CalculatePositionSystem(Point tileSize)
+public class CalculateCoordinatePositionSystem(Point tileSize)
     : IEcsInitSystem, IEcsRunSystem
 {
     private EcsFilter _filter;
     private EcsPool<Coordinate> _coordinatePool;
     private EcsPool<Position> _positionPool;
 
-    private readonly Vector2 _tileOffset = tileSize.ToVector2() * 0.5f;
+    private readonly Vector2 _halfTileSize = tileSize.ToVector2() * 0.5f;
 
     public void Init(IEcsSystems systems)
     {
@@ -32,7 +32,7 @@ public class CalculatePositionSystem(Point tileSize)
         {
             ref var coordinate = ref _coordinatePool.Get(entity).Point;
 
-            var coordinatePosition = (coordinate * tileSize).ToVector2() + _tileOffset;
+            var coordinatePosition = (coordinate * tileSize).ToVector2() + _halfTileSize;
 
             _positionPool.Add(entity, new Position(coordinatePosition));
         }

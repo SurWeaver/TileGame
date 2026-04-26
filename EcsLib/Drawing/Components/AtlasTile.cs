@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace EcsLib.Drawing.Tiles;
+namespace EcsLib.Drawing.Components;
 
 public struct AtlasTile(Point coordinate, Point size)
 {

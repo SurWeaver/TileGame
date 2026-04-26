@@ -1,7 +1,7 @@
 using EcsLib.Cleanup.Systems;
 using EcsLib.Common.Components;
+using EcsLib.Common.Systems;
 using EcsLib.Drawing.Systems;
-using EcsLib.Drawing.Tile.Systems;
 using EcsLib.Input.Components;
 using EcsLib.Input.Systems;
 using Leopotam.EcsLite;
@@ -15,9 +15,13 @@ public static class EcsSystemsExtensions
     public static IEcsSystems AddVisualComponentEvaluations(this IEcsSystems systems)
     {
         systems
-            .Add(new CalculatePositionSystem(tileSize: new Point(32)))
+            // Вычисляет позицию
+            .Add(new CalculateCoordinatePositionSystem(tileSize: new Point(32)))
+            // Вычисляет SourceRectangle
             .Add(new CalculateSpriteRectangleSystem())
+            // Вычисляет SpriteOrigin
             .Add(new CalculateSpriteOriginSystem())
+            // Вычисляет всё остальное
             .Add(new FillSpriteSystem());
 
         return systems;
@@ -34,7 +38,7 @@ public static class EcsSystemsExtensions
         return systems;
     }
 
-    public static IEcsSystems AddCleaningOneFrameComponentsAndEntities(this IEcsSystems systems)
+    public static IEcsSystems AddCleanup(this IEcsSystems systems)
     {
         systems
             .Add(new DeleteEntityWithComponentSystem<DeleteAfterFrameEnd>())
