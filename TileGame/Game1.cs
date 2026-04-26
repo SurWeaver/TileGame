@@ -2,13 +2,16 @@
 using Core.Input;
 using DataModels;
 using DataModels.Input;
+using EcsLib.Common.Components;
+using EcsLib.Drawing.Components;
+using EcsLib.Drawing.Enums;
 using EcsLib.Drawing.Systems;
+using EcsLib.Drawing.Tiles;
 using EcsLib.Input.Components;
 using EcsLib.Tools;
 using Leopotam.EcsLite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TileGame.GameSystems;
 using TileGame.Initialization;
 
 namespace TileGame;
@@ -51,6 +54,8 @@ public class Game1 : Game
     {
         _updateSystems = new EcsSystems(_world);
         _updateSystems
+            .AddVisualComponentEvaluations()
+
             .AddActionProcessing()
 
             .AddCleaningOneFrameComponentsAndEntities()
@@ -59,6 +64,7 @@ public class Game1 : Game
         _drawSystems = new EcsSystems(_world);
         _drawSystems
             .Add(new BeginDrawSystem(_spriteBatch, samplerState: SamplerState.PointClamp))
+            .Add(new DrawSpriteSystem(_spriteBatch))
             .Add(new EndDrawSystem(_spriteBatch))
             .Init();
     }
