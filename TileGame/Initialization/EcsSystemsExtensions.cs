@@ -24,8 +24,10 @@ public static class EcsSystemsExtensions
             // Вычисляет всё остальное
             .Add(new FillSpriteSystem())
 
+            .Add(new CalculateParentScaleSystem())
+            .Add(new CalculateParentRotationSystem())
             .Add(new CalculateParentPositionSystem())
-            .Add(new CalculateParentRotationSystem());
+            ;
 
         return systems;
     }
