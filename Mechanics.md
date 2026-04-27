@@ -40,9 +40,9 @@
 
 Если на сущности следующие компоненты:
 
-- Parent + **DeltaPosition** + Position + **DeltaRotation** + Rotation = объект двигается и вращается относительно родителя.
-- Parent + **DeltaPosition** + Position + Rotation = объект двигается относительно родителя, сам вращается.
-- Parent + Position + **DeltaRotation** + Rotation = объект вращается относительно родителя, стоит на своей позиции.
+* Parent + **DeltaPosition** + Position + **DeltaRotation** + Rotation = объект двигается и вращается относительно родителя.
+* Parent + **DeltaPosition** + Position + Rotation = объект двигается относительно родителя, сам вращается.
+* Parent + Position + **DeltaRotation** + Rotation = объект вращается относительно родителя, стоит на своей позиции.
 
 ## Управление
 
