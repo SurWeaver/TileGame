@@ -19,6 +19,11 @@ public static class EntityBuilder
         return new InnerBuilder(entity);
     }
 
+    public static EcsPackedEntity GetPacked(int entity)
+    {
+        return _world.PackEntity(entity);
+    }
+
     public class InnerBuilder
     {
         private readonly int _entity;
