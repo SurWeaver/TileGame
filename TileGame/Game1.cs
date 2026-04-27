@@ -15,7 +15,9 @@ namespace TileGame;
 
 public class Game1 : Game
 {
-    private GraphicsDeviceManager _graphics;
+    public static readonly Point TileSize = new(32);
+    public static readonly Point GridSize = new(24, 12);
+    private readonly GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
     private EcsWorld _world;
@@ -28,6 +30,10 @@ public class Game1 : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
+        _graphics.PreferredBackBufferWidth = GridSize.X * TileSize.X;
+        _graphics.PreferredBackBufferHeight = GridSize.Y * TileSize.Y;
+        _graphics.ApplyChanges();
     }
 
     protected override void Initialize()

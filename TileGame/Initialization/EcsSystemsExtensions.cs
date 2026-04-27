@@ -5,7 +5,6 @@ using EcsLib.Drawing.Systems;
 using EcsLib.Input.Components;
 using EcsLib.Input.Systems;
 using Leopotam.EcsLite;
-using Microsoft.Xna.Framework;
 
 namespace TileGame.Initialization;
 
@@ -16,7 +15,7 @@ public static class EcsSystemsExtensions
     {
         systems
             // Вычисляет позицию
-            .Add(new CalculateCoordinatePositionSystem(tileSize: new Point(32)))
+            .Add(new CalculateCoordinatePositionSystem(Game1.TileSize))
             // Вычисляет SourceRectangle
             .Add(new CalculateSpriteRectangleSystem())
             // Вычисляет SpriteOrigin

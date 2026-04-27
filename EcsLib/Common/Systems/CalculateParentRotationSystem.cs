@@ -38,7 +38,6 @@ public class CalculateParentRotationSystem
             ref var parentRotation = ref _rotationPool.Get(parentId).Radians;
             ref var deltaRotation = ref _deltaRotationPool.Get(entity).Radians;
 
-
             ref var rotation = ref _rotationPool.Get(entity).Radians;
             rotation = parentRotation + deltaRotation;
         }
