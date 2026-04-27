@@ -15,7 +15,7 @@ public class DrawSpriteSystem(SpriteBatch spriteBatch)
     private EcsPool<SpriteColor> _colorPool;
     private EcsPool<Rotation> _rotationPool;
     private EcsPool<SpriteOrigin> _originPool;
-    private EcsPool<SpriteScale> _scalePool;
+    private EcsPool<Scale> _scalePool;
     private EcsPool<SpriteFlip> _flipPool;
     private EcsPool<SpriteLayer> _layerPool;
 
@@ -29,7 +29,7 @@ public class DrawSpriteSystem(SpriteBatch spriteBatch)
             .Inc<SpriteColor>()
             .Inc<Rotation>()
             .Inc<SpriteOrigin>()
-            .Inc<SpriteScale>()
+            .Inc<Scale>()
             .Inc<SpriteFlip>()
             .Inc<SpriteLayer>()
             .End();
@@ -40,7 +40,7 @@ public class DrawSpriteSystem(SpriteBatch spriteBatch)
         _colorPool = world.GetPool<SpriteColor>();
         _rotationPool = world.GetPool<Rotation>();
         _originPool = world.GetPool<SpriteOrigin>();
-        _scalePool = world.GetPool<SpriteScale>();
+        _scalePool = world.GetPool<Scale>();
         _flipPool = world.GetPool<SpriteFlip>();
         _layerPool = world.GetPool<SpriteLayer>();
     }

@@ -14,6 +14,7 @@ public class CalculateParentPositionSystem
     private EcsPool<ParentEntity> _parentPool;
     private EcsPool<Position> _positionPool;
     private EcsPool<Rotation> _rotationPool;
+    private EcsPool<Scale> _scalePool;
 
     public void Init(IEcsSystems systems)
     {
@@ -28,6 +29,7 @@ public class CalculateParentPositionSystem
         _parentPool = _world.GetPool<ParentEntity>();
         _positionPool = _world.GetPool<Position>();
         _rotationPool = _world.GetPool<Rotation>();
+        _scalePool = _world.GetPool<Scale>();
     }
 
     public void Run(IEcsSystems systems)
@@ -41,14 +43,20 @@ public class CalculateParentPositionSystem
             ref var deltaPosition = ref _deltaPosPool.Get(entity).Vector;
 
             Vector2 finalDeltaPosition = deltaPosition;
+
+            if (_scalePool.Has(parentId))
+            {
+                var parentScale = _scalePool.Get(parentId).Vector;
+                finalDeltaPosition *= parentScale;
+            }
             if (_rotationPool.Has(parentId))
             {
                 var parentRotation = _rotationPool.Get(parentId).Radians;
-                finalDeltaPosition = Vector2.Rotate(deltaPosition, parentRotation);
+                finalDeltaPosition = Vector2.Rotate(finalDeltaPosition, parentRotation);
             }
 
-            ref var parentPosition = ref _positionPool.Get(parentId).Vector;
             ref var entityPosition = ref _positionPool.Get(entity);
+            var parentPosition = _positionPool.Get(parentId).Vector;
             entityPosition.Vector = parentPosition + finalDeltaPosition;
         }
     }
