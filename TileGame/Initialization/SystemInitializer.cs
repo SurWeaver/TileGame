@@ -11,8 +11,6 @@ using EcsLib.Tweening.Systems;
 using Leopotam.EcsLite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TileGame.Testing.Systems;
-using TileGame.Testing.VibrationCheck;
 
 namespace TileGame.Initialization;
 
@@ -27,9 +25,6 @@ public class SystemInitializer
             .Add(new CalculateSpriteRectangleSystem())
             .Add(new CalculateSpriteOriginSystem())
             .Add(new FillSpriteSystem())
-            // Тестовое отображение таймеров
-            .Add(new WriteTimerSystem())
-            .Add(new TimerSignalSystem())
 
             .Add(new UpdateTweenEasePercentSystem())
             .Add(new UpdateTweenValueSystem<Position, Vector2>(LerpFunctions.LerpVector2, (vector) => new(vector)))
@@ -53,9 +48,9 @@ public class SystemInitializer
             .Add(new ProcessMouseActionSystem())
             .Add(new ProcessMouseUiButtonSystem())
 
-            .Add(new InputAlertSystem())
-
-            .Add(new InputVibrationSystem())
+            .Add(new ProcessTweenPongSystem<Vector2>())
+            .Add(new ProcessTweenPongSystem<float>())
+            .Add(new ProcessTweenPongSystem<Color>())
 
             // Очистка
             .Add(new DeleteEntityWithComponentSystem<DeleteAfterFrameEnd>())
@@ -68,6 +63,4 @@ public class SystemInitializer
             .Add(new DrawSpriteSystem(spriteBatch))
             .Add(new EndDrawSystem(spriteBatch))
             .Init();
-
-
 }

@@ -8,6 +8,7 @@ using EcsLib.Tools;
 using EcsLib.Tweening.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TileGame.Tweening.Enums;
 
 namespace TileGame.Initialization;
 
@@ -69,12 +70,20 @@ public static class EntityBuilderExtensions
     }
 
     public static EntityBuilder.InnerBuilder WithTween(this EntityBuilder.InnerBuilder builder,
-        int entity, float duration, EasingType ease = EasingType.Linear, bool looping = false) => builder
+        int entity, float duration, EasingType ease = EasingType.Linear, LoopMode loopMode = LoopMode.None)
+    {
+        builder
             .With(new TweenEntity(EntityBuilder.GetPacked(entity)))
             .With(new TweenEasing(ease))
-            .WithTimer(duration, looping)
+            .WithTimer(duration, loopMode != LoopMode.None)
             .With(new Percentage())
             .With(new EasingPercentage());
+
+        if (loopMode is LoopMode.PingPong)
+            builder.With(new PongRepeat());
+
+        return builder;
+    }
 
     public static EntityBuilder.InnerBuilder WithValuePair<T>(this EntityBuilder.InnerBuilder builder,
         T start, T end) => builder
