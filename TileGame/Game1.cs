@@ -1,9 +1,7 @@
-﻿using Core.Input;
+﻿using Core.Context;
+using Core.Input;
 using DataModels;
 using DataModels.Input;
-using EcsLib.Common.Components;
-using EcsLib.Drawing.Components;
-using EcsLib.Drawing.Systems;
 using EcsLib.Input.Components;
 using EcsLib.Tools;
 using Leopotam.EcsLite;
@@ -56,20 +54,10 @@ public class Game1 : Game
     private void InitializeSystems()
     {
         _updateSystems = new EcsSystems(_world);
-        _updateSystems
-            .AddVisualComponentEvaluations()
-
-            .AddActionProcessing()
-
-            .AddCleanup()
-            .Init();
-
         _drawSystems = new EcsSystems(_world);
-        _drawSystems
-            .Add(new BeginDrawSystem(_spriteBatch, samplerState: SamplerState.PointClamp))
-            .Add(new DrawSpriteSystem(_spriteBatch))
-            .Add(new EndDrawSystem(_spriteBatch))
-            .Init();
+
+        SystemInitializer.InitializeUpdateSystems(_updateSystems);
+        SystemInitializer.InitializeDrawSystems(_drawSystems, _spriteBatch);
     }
 
     private void LoadInputToWorld()
