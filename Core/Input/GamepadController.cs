@@ -38,6 +38,11 @@ public static class GamepadController
         Side.Left => _current.Triggers.Left,
         _ => throw new InvalidEnumArgumentException(),
     };
+
+    public static void Vibrate(float leftStrength, float rightStrength) =>
+        GamePad.SetVibration(playerIndex: 0, leftStrength, rightStrength);
+
+    public static void StopVibration() => GamePad.SetVibration(playerIndex: 0, 0f, 0f);
 }
 
 public enum Side
