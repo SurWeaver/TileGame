@@ -1,6 +1,7 @@
 using EcsLib.Common.Components;
 using EcsLib.Drawing.Components;
 using EcsLib.Drawing.Enums;
+using EcsLib.Timers.Components;
 using EcsLib.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -52,4 +53,15 @@ public static class EntityBuilderExtensions
     public static EntityBuilder.InnerBuilder WithAlignment(this EntityBuilder.InnerBuilder builder,
         Alignment bothAlignments = Alignment.Center) => builder
             .With(new SpriteAlignment(bothAlignments, bothAlignments));
+
+    public static EntityBuilder.InnerBuilder WithTimer(this EntityBuilder.InnerBuilder builder,
+        float duration, bool looping = false)
+    {
+        builder.With(new Timer(duration));
+
+        if (looping)
+            builder.With(new Looping());
+
+        return builder;
+    }
 }

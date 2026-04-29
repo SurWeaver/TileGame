@@ -97,6 +97,8 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
+        GameContext.UpdateGameTime(gameTime);
+
         GamepadController.Update();
         KeyboardController.Update();
         MouseController.Update();
