@@ -1,8 +1,11 @@
+using System;
+using Core.Tweening;
 using EcsLib.Common.Components;
 using EcsLib.Drawing.Components;
 using EcsLib.Drawing.Enums;
 using EcsLib.Timers.Components;
 using EcsLib.Tools;
+using EcsLib.Tweening.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -63,5 +66,30 @@ public static class EntityBuilderExtensions
             builder.With(new Looping());
 
         return builder;
+    }
+
+    public static EntityBuilder.InnerBuilder WithTween(this EntityBuilder.InnerBuilder builder,
+        int entity, float duration, EasingType ease = EasingType.Linear, bool looping = false) => builder
+            .With(new TweenEntity(EntityBuilder.GetPacked(entity)))
+            .With(new TweenEasing(ease))
+            .WithTimer(duration, looping)
+            .With(new Percentage())
+            .With(new EasingPercentage());
+
+    public static EntityBuilder.InnerBuilder WithValuePair<T>(this EntityBuilder.InnerBuilder builder,
+        T start, T end) => builder
+            .With(new TweenValuePair<T>(start, end));
+
+    public static EntityBuilder.InnerBuilder WithChainedTween(this EntityBuilder.InnerBuilder firstBuilder,
+        Action<EntityBuilder.InnerBuilder> chainedTweenActions)
+    {
+        var chainedTweenBuilder = EntityBuilder.NewEntity()
+            .With(new Paused());
+
+        firstBuilder.With(new ChainedTween(EntityBuilder.GetPacked(chainedTweenBuilder.End())));
+
+        chainedTweenActions?.Invoke(chainedTweenBuilder);
+
+        return firstBuilder;
     }
 }
