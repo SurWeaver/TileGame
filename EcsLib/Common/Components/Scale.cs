@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace EcsLib.Drawing.Components;
+namespace EcsLib.Common.Components;
 
 public struct Scale(Vector2 vector)
 {

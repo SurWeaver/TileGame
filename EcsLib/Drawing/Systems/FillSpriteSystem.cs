@@ -1,3 +1,4 @@
+using EcsLib.Common.Components;
 using EcsLib.Drawing.Components;
 using EcsLib.Extensions;
 using Leopotam.EcsLite;
