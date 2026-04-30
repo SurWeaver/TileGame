@@ -1,4 +1,3 @@
-using Core.Tweening;
 using EcsLib.Cleanup.Systems;
 using EcsLib.Common.Components;
 using EcsLib.Common.Systems;
@@ -27,13 +26,13 @@ public class SystemInitializer
             .Add(new FillSpriteSystem())
 
             .Add(new UpdateTweenEasePercentSystem())
-            .Add(new UpdateTweenValueSystem<Position, Vector2>(LerpFunctions.LerpVector2, (vector) => new(vector)))
-            .Add(new UpdateTweenValueSystem<Scale, Vector2>(LerpFunctions.LerpVector2, (vector) => new(vector)))
-            .Add(new UpdateTweenValueSystem<Rotation, float>(LerpFunctions.LerpFloat, (rotation) => new(rotation)))
-            .Add(new UpdateTweenValueSystem<DeltaPosition, Vector2>(LerpFunctions.LerpVector2, (vector) => new(vector)))
-            .Add(new UpdateTweenValueSystem<DeltaScale, Vector2>(LerpFunctions.LerpVector2, (vector) => new(vector)))
-            .Add(new UpdateTweenValueSystem<DeltaRotation, float>(LerpFunctions.LerpFloat, (rotation) => new(rotation)))
-            .Add(new UpdateTweenValueSystem<SpriteColor, Color>(LerpFunctions.LerpColor, (color) => new(color)))
+            .Add(new UpdateTweenValueSystem<Position, Vector2>(Vector2.Lerp, (vector) => new(vector)))
+            .Add(new UpdateTweenValueSystem<Scale, Vector2>(Vector2.Lerp, (vector) => new(vector)))
+            .Add(new UpdateTweenValueSystem<Rotation, float>(float.Lerp, (rotation) => new(rotation)))
+            .Add(new UpdateTweenValueSystem<DeltaPosition, Vector2>(Vector2.Lerp, (vector) => new(vector)))
+            .Add(new UpdateTweenValueSystem<DeltaScale, Vector2>(Vector2.Lerp, (vector) => new(vector)))
+            .Add(new UpdateTweenValueSystem<DeltaRotation, float>(float.Lerp, (rotation) => new(rotation)))
+            .Add(new UpdateTweenValueSystem<SpriteColor, Color>(Color.Lerp, (color) => new(color)))
 
             .Add(new UpdateChainedTweenSystem())
 
