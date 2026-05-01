@@ -14,6 +14,7 @@ public class ProcessTimerSystem
     private EcsPool<Timer> _timerPool;
     private EcsPool<Finished> _finishedPool;
     private EcsPool<DeleteAfterFrameEnd> _deletePool;
+    private EcsPool<RepeatCount> _repeatCountPool;
     private EcsPool<Looping> _loopingPool;
 
     public void Init(IEcsSystems systems)
@@ -33,6 +34,7 @@ public class ProcessTimerSystem
         _finishedPool = world.GetPool<Finished>();
         _loopingPool = world.GetPool<Looping>();
         _deletePool = world.GetPool<DeleteAfterFrameEnd>();
+        _repeatCountPool = world.GetPool<RepeatCount>();
     }
 
     public void Run(IEcsSystems systems)
@@ -48,11 +50,25 @@ public class ProcessTimerSystem
 
             timer.SecondsPassed = Math.Min(timer.SecondsPassed + deltaTime.TotalSeconds, timer.Duration);
 
-            if (timer.SecondsPassed >= timer.Duration)
+            if (timer.SecondsPassed < timer.Duration)
+                continue;
+
+            _finishedPool.Add(entity);
+            if (_loopingPool.Has(entity))
             {
-                _finishedPool.Add(entity);
-                if (!_loopingPool.Has(entity))
+                if (!_repeatCountPool.Has(entity))
+                    continue;
+
+                ref var repeat = ref _repeatCountPool.Get(entity);
+
+                if (repeat.Count <= 0)
                     _deletePool.Add(entity);
+                else
+                    repeat.Count -= 1;
+            }
+            else
+            {
+                _deletePool.Add(entity);
             }
         }
     }
