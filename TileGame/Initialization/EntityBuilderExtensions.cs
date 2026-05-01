@@ -89,6 +89,10 @@ public static class EntityBuilderExtensions
         T start, T end) => builder
             .With(new TweenValuePair<T>(start, end));
 
+    public static EntityBuilder.InnerBuilder WithRelativePair<T>(this EntityBuilder.InnerBuilder builder,
+        T finalValue) => builder
+            .With(new TweenRelativePair<T>(finalValue));
+
     public static EntityBuilder.InnerBuilder WithChainedTween(this EntityBuilder.InnerBuilder firstBuilder,
         Action<EntityBuilder.InnerBuilder> chainedTweenActions)
     {
